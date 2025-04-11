@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gojek/diskon10rb.dart';
 import 'package:gojek/saldogopay/bayar.dart';
 import 'package:gojek/saldogopay/gopay.dart';
 import 'package:gojek/saldogopay/lainnya.dart';
@@ -38,9 +39,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         title: SizedBox(
           height: 40,
@@ -97,79 +97,80 @@ class HomeScreen extends StatelessWidget {
             //const SizedBox(height: 16),
 
             // Grup Saldo dan Tombol GoPay
-            Container(
-              padding: const EdgeInsets.all(12),
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 5,
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Bagian Saldo yang Bisa Diklik
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                GopayScreen()), // Ganti dengan halaman tujuan
-                      );
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/gopay.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        SizedBox(width: 8),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Rp0',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+            // Tambahkan di dalam Column -> tepat di bawah iklan
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Bagian Saldo GoPay
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GopayScreen()),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/gopay.png',
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'Rp0',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Text(
-                              '0 coins',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.grey),
-                            ),
-                          ],
-                        ),
+                              Text(
+                                '0 coins',
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Tombol Aksi: Bayar, Top Up, Lainnya
+                    Row(
+                      children: [
+                        _buildClickableButton(Icons.arrow_upward, "Bayar",
+                            context, BayarScreen()),
+                        const SizedBox(width: 25),
+                        _buildClickableButton(
+                            Icons.add, "Top Up", context, TopUpScreen()),
+                        const SizedBox(width: 16),
+                        _buildClickableButton(Icons.more_horiz, "Lainnya",
+                            context, LainnyaScreen()),
                       ],
                     ),
-                  ),
-                  // Bagian Tombol Aksi
-                  Row(
-                    children: [
-                      _buildClickableButton(
-                          Icons.arrow_upward, "Bayar", context, BayarScreen()),
-                      const SizedBox(width: 15),
-                      _buildClickableButton(
-                          Icons.add, "Top Up", context, TopUpScreen()),
-                      const SizedBox(width: 15),
-                      _buildClickableButton(Icons.more_horiz, "Lainnya",
-                          context, LainnyaScreen()),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-
-            const SizedBox(height: 16),
 
             // Menu Layanan Gojek
             Container(
@@ -184,32 +185,67 @@ class HomeScreen extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     crossAxisCount: 4,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    childAspectRatio: 0.8,
                     children: [
                       _menuItem(context, "GoRide", "assets/goride.png", "1RB!",
-                          GoRideScreen()),
+                          () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => RidePage()));
+                      }),
                       _menuItem(context, "GoCar", "assets/gocar.png", "6RB!",
-                          GoCarScreen()),
+                          () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => RidePage()));
+                      }),
                       _menuItem(context, "GoFood", "assets/gofood.png", "-75%",
-                          GoFoodScreen()),
+                          () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => FoodPage()));
+                      }),
                       _menuItem(context, "GoSend", "assets/gosend.png", "5RB!",
-                          GoSendScreen()),
+                          () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => GoSendPage()));
+                      }),
                       _menuItem(context, "GoMart", "assets/gomart.png", "-40%",
-                          GoMartScreen()),
-                      _menuItem(context, "GoTagihan", "assets/gotagihan.png",
-                          "", GoTagihanScreen()),
-                      _menuItem(context, "GoFood Hemat", "assets/gohemat.png",
-                          "HEMAT", GoFoodHemarScreen()),
+                          () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Gomart()));
+                      }),
+                      _menuItem(
+                          context, "GoTagihan", "assets/gotagihan.png", "", () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => GoTagihanPage()));
+                      }),
+                      _menuItem(
+                          context, "Go Hemat", "assets/gohemat.png", "HEMAT",
+                          () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => GoFoodHemarScreen()));
+                      }),
                       _menuItem(context, "Lainnya", "assets/lainnya.png", "",
-                          LainnyaGojekScreen()),
+                          () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (_) => const LainnyaGojekSheet(),
+                        );
+                      }, isLainnya: true),
                     ],
                   ),
 
-                  const SizedBox(height: 8), // Spasi antara ikon dan banner
+                  const SizedBox(height: 10), // Spasi antara ikon dan banner
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => PromoScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => GojekPlusPage()),
                       );
                     },
                     child: Container(
@@ -217,7 +253,7 @@ class HomeScreen extends StatelessWidget {
                           horizontal: 12, vertical: 8),
                       margin: const EdgeInsets.symmetric(horizontal: 15),
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: const Color.fromARGB(255, 7, 122, 11),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
@@ -367,10 +403,10 @@ Widget _buildClickableButton(
     child: Column(
       children: [
         Container(
-          width: 30,
-          height: 30,
+          width: 25,
+          height: 25,
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: const Color.fromARGB(255, 85, 178, 254),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(icon, color: Colors.white, size: 20),
@@ -382,56 +418,54 @@ Widget _buildClickableButton(
   );
 }
 
-Widget _menuItem(BuildContext context, String title, String imagePath,
-    String promo, Widget destinationScreen,
-    {bool isCircle = false}) {
+Widget _menuItem(
+  BuildContext context,
+  String title,
+  String iconPath,
+  String promo,
+  VoidCallback onTap, {
+  bool isLainnya = false,
+}) {
   return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => destinationScreen),
-      );
-    },
+    onTap: onTap,
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Stack(
           clipBehavior: Clip.none,
           children: [
             Container(
-              width: 50, // Ukuran lebih kecil
-              height: 50,
+              width: 56,
+              height: 56,
               decoration: BoxDecoration(
-                shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-                borderRadius: isCircle
-                    ? null
-                    : BorderRadius.circular(16), // Sudut hanya untuk non-circle
-              ),
-              child: ClipRRect(
-                borderRadius: isCircle
-                    ? BorderRadius.circular(50)
-                    : BorderRadius.circular(16),
-                child: Image.asset(imagePath,
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover), // Menyesuaikan gambar agar penuh
+                shape: isLainnya ? BoxShape.circle : BoxShape.rectangle,
+                borderRadius:
+                    isLainnya ? null : BorderRadius.circular(16),
+                image: DecorationImage(
+                  image: AssetImage(iconPath),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            if (promo.isNotEmpty)
+            if (promo.isNotEmpty && !isLainnya)
               Positioned(
-                top: -2,
-                left: -2,
+                top: -6,
+                left: -6,
                 child: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(6),
+                    ),
                   ),
                   child: Text(
                     promo,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 9,
+                      fontSize: 10,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -439,16 +473,21 @@ Widget _menuItem(BuildContext context, String title, String imagePath,
               ),
           ],
         ),
-        const SizedBox(height: 4),
-        Text(
-          title,
-          style: const TextStyle(fontSize: 10),
-          textAlign: TextAlign.center,
+        const SizedBox(height: 6),
+        SizedBox(
+          width: 56,
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 12),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     ),
   );
 }
+
 
 //tombol bentuk kotak
 Widget _buildSquareButton(IconData icon, String label) {

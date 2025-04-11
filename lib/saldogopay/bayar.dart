@@ -55,11 +55,13 @@ class BayarScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.help_outline, color: Colors.white),
+                            icon: const Icon(Icons.help_outline,
+                                color: Colors.white),
                             onPressed: () {},
                           ),
                           IconButton(
-                            icon: const Icon(Icons.flash_on, color: Colors.white),
+                            icon:
+                                const Icon(Icons.flash_on, color: Colors.white),
                             onPressed: () {},
                           ),
                           IconButton(
@@ -77,7 +79,9 @@ class BayarScreen extends StatelessWidget {
                         children: const [
                           Text(
                             'Powered by QRIS',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                           SizedBox(height: 4),
                           Text(
@@ -90,7 +94,7 @@ class BayarScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              
+
               // Promo Section
               Container(
                 padding: const EdgeInsets.all(12),
@@ -115,7 +119,7 @@ class BayarScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              
+
               // Quick Action Buttons
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -123,12 +127,13 @@ class BayarScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildQuickAction(Icons.qr_code, "Tunjukkan kode"),
-                    _buildQuickAction(Icons.account_balance, "Transfer bank", extraText: "Biaya 2,5rb"),
+                    _buildQuickAction(Icons.account_balance, "Transfer bank",
+                        extraText: "Biaya 2,5rb"),
                     _buildQuickAction(Icons.send, "Gratis Transfer"),
                   ],
                 ),
               ),
-              
+
               // Input Field
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -142,7 +147,7 @@ class BayarScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               // Contact Section
               const Padding(
                 padding: EdgeInsets.all(16.0),
@@ -176,7 +181,8 @@ class BayarScreen extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(10),
@@ -190,7 +196,8 @@ class BayarScreen extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 4),
-        Text(label, textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
+        Text(label,
+            textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
       ],
     );
   }

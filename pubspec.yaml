@@ -31,6 +31,7 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   flutter:
     sdk: flutter
+  carousel_slider: ^5.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -79,9 +80,123 @@ flutter:
     - assets/promo3.png
     - assets/gopay.png
     - assets/iklaninfinix.png
+    - assets/profile/ajak_teman.png
+    - assets/profile/aksebilitas.png
+    - assets/profile/aktivitasku.png
+    - assets/profile/alamat_favorit.png
+    - assets/profile/atribusi_data.png
+    - assets/profile/atur_akun.png
+    - assets/profile/beri_rating.png
+    - assets/profile/gojek_plus.png
+    - assets/profile/kebijakan_privasi.png
+    - assets/profile/ketentuan_layanan.png
+    - assets/profile/metode_pembayaran.png
+    - assets/profile/pilihan_bahasa.png
+    - assets/profile/profil_bisnis.png
+    - assets/profile/promo.png
+    - assets/profile/pusat_bantuan.png
+    - assets/gopay.1.png
+    - assets/yy.png
+    - assets/petir.png
+    - assets/peta.png
+    - assets/iconhemat.png
+    - assets/iconbawah.png
+    - assets/gojekplus.png
+    - assets/oneklik.png
+    - assets/jago.png
+    - assets/bri.png
+    - assets/blu.png
+    - assets/alfa.png
+    - assets/indo.png
+    - assets/lawson.png
+    - assets/mitra.png
+    - assets/atm.png
+    - assets/midi.png
+    - assets/dan.png
+    - assets/pos.png
+    - assets/promo.jpg
+    - assets/mineral.jpg
+    - assets/marjan.jpg
+    - assets/scarlett.jpg
+    - assets/sos.jpg
+    - assets/kahf.jpg
+    - assets/A4.jpg
+    - assets/bahan_pokok.jpg
+    - assets/susu.jpg
+    - assets/instan.jpg
+    - assets/buah.jpg
+    - assets/roti.jpg
+    - assets/sarden.jpg
+    - assets/iklan_gosend.jpg
+    - assets/1_jam.jpg
+    - assets/kardus.jpg
+    - assets/new_hemat.jpg
+    - assets/banner_gosend.jpg
+    - assets/progih_1.jpg
+    - assets/progih_2.jpg
+    - assets/progih_3.jpg
+    - assets/marina.jpg
+    - assets/vaselin.jpg
+    - assets/sabun.jpg
+    - assets/parfum.jpg
+    - assets/make_up.jpg
+    - assets/atk.jpg
+    - assets/kamar.jpg
+    - assets/wipol.jpg
+    - assets/glad.jpg
+    - assets/iklan_promo.jpg
+    - assets/iklan_glad.jpg
+    - assets/iklan_majika.jpg
+    - assets/uang.jpg
+    - assets/pln.jpg
+    - assets/pulsa.jpg
+    - assets/pdam.jpg
+    - assets/bpjs.jpg
+    - assets/internet.jpg
+    - assets/kredit.jpg
+    - assets/streaming.jpg
+    - assets/ipl.jpg
+    - assets/invoic.jpg
+    - assets/icon_kirim.jpg
+    - assets/icon_ambil.jpg
+    - assets/icon_voucher.jpg
+    - assets/icon_paket.jpg
+    - assets/icon_pln.jpg
+    - assets/icon_halo.jpg
+    - assets/icon_telkom.jpg
+    - assets/icon_indihome.jpg
+    - assets/icon_emoney.jpg
+    - assets/icon_pinjam.jpg
+    - assets/icon_later.jpg
+    - assets/icon_pln.jpg
+    - assets/icon_gotagihan.jpg
+    - assets/game.jpg
+    - assets/pasca.jpg
+    - assets/pinjam.jpg
+    - assets/telkom.jpg
+    - assets/pendidikan.jpg
+    - assets/ekir.jpg
+    - assets/gas.jpg
+    - assets/data.jpg
+    - assets/asuran.jpg
+    - assets/telkom.jpg
+    - assets/background.png
+    - assets/bunderburger.jpg
+    - assets/diskon.jpg
+    - assets/mixue.jpg
+    - assets/promoayam.png
+    - assets/promodua.png
+    - assets/promotiga.png
+    - assets/restosushi.jpg
+    - assets/blue.png
+    - assets/box.png
+    - assets/dinein.png
+    - assets/later.png
+    - assets/shop.png
+    - assets/tabungan.png
+    - assets/transit.png
 
-
-
+    - assets/profile/notif.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

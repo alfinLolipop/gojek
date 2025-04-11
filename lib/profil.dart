@@ -70,29 +70,41 @@ class ProfileScreen extends StatelessWidget {
             ),
             Divider(height: 1, thickness: 8, color: Colors.grey[200]),
             buildMenuSection("Akun", [
-              buildMenuItem("assets/icons/history.png", "Aktivitasku", "Cek riwayat & aktivitas aktif"),
-              buildMenuItem("assets/icons/gojek_plus.png", "Gojek PLUS"),
-              buildMenuItem("assets/icons/promo.png", "Promo"),
-              buildMenuItem("assets/icons/wallet.png", "Metode Pembayaran"),
-              buildMenuItem("assets/icons/help.png", "Pusat bantuan"),
-              buildMenuItem("assets/icons/business.png", "Profil bisnis"),
-              buildMenuItem("assets/icons/language.png", "Pilihan bahasa"),
-              buildMenuItem("assets/icons/location.png", "Alamat favorit"),
-              buildMenuItem("assets/icons/accessibility.png", "Aksesibilitas"),
-              buildMenuItem("assets/icons/friends.png", "Ajak teman, dapat voucher"),
-              buildMenuItem("assets/icons/notifications.png", "Notifikasi"),
-              buildMenuItemWithBadge("assets/icons/security.png", "Keamanan akun", "Baru"),
-              buildMenuItem("assets/icons/settings.png", "Atur akun"),
+              buildMenuItem("assets/profile/aktivitasku.png", "Aktivitasku",
+                  "Cek riwayat & aktivitas aktif"),
+              buildMenuItem("assets/profile/gojek_plus.png", "Gojek PLUS"),
+              buildMenuItem("assets/profile/promo.png", "Promo"),
+              buildMenuItem(
+                  "assets/profile/metode_pembayaran.png", "Metode Pembayaran"),
+              buildMenuItem(
+                  "assets/profile/pusat_bantuan.png", "Pusat bantuan"),
+              buildMenuItem(
+                  "assets/profile/profil_bisnis.png", "Profil bisnis"),
+              buildMenuItem(
+                  "assets/profile/pilihan_bahasa.png", "Pilihan bahasa"),
+              buildMenuItem(
+                  "assets/profile/alamat_favorit.png", "Alamat favorit"),
+              buildMenuItem("assets/profile/aksebilitas.png", "Aksesibilitas"),
+              buildMenuItem(
+                  "assets/profile/ajak_teman.png", "Ajak teman, dapat voucher"),
+              buildMenuItem("assets/profile/notif.png", "Notifikasi"),
+              buildMenuItemWithBadge("assets/profile/kebijakan_privasi.png",
+                  "Keamanan akun", "Baru"),
+              buildMenuItem("assets/profile/atur_akun.png", "Atur akun"),
             ]),
             buildMenuSection("Info lainnya", [
-              buildMenuItem("assets/icons/privacy.png", "Kebijakan Privasi"),
-              buildMenuItem("assets/icons/terms.png", "Ketentuan Layanan"),
-              buildMenuItem("assets/icons/info.png", "Atribusi data"),
-              buildMenuItem("assets/icons/star.png", "Beri rating"),
+              buildMenuItem(
+                  "assets/profile/kebijakan_privasi.png", "Kebijakan Privasi"),
+              buildMenuItem(
+                  "assets/profile/ketentuan_layanan.png", "Ketentuan Layanan"),
+              buildMenuItem(
+                  "assets/profile/atribusi_data.png", "Atribusi data"),
+              buildMenuItemWithTrailingText(
+                "assets/profile/beri_rating.png",
+                "Beri rating",
+                "v 5.13.1",
+              ),
             ]),
-            const SizedBox(height: 20),
-            const Text("v 5.13.1", style: TextStyle(color: Colors.grey)),
-            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -100,42 +112,74 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget buildMenuSection(String title, List<Widget> children) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Text(
-            title,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey[700]),
+    return Container(
+      color:
+          Colors.white, // Bungkus semua bagian section: title + item + divider
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              title,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[700]),
+            ),
           ),
-        ),
-        Column(children: children),
-        Divider(height: 1, thickness: 8, color: Colors.grey[200]),
-      ],
+          Column(children: children),
+          Divider(height: 1, thickness: 8, color: Colors.grey[200]),
+        ],
+      ),
+    );
+  }
+
+  Widget buildMenuItemWithTrailingText(
+      String iconPath, String title, String trailingText) {
+    return ListTile(
+      leading: Image.asset(iconPath, width: 32, height: 32), // Diperbesar
+      title: Text(title),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            trailingText,
+            style: const TextStyle(color: Colors.grey),
+          ),
+          const SizedBox(width: 8),
+          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+        ],
+      ),
+      onTap: () {},
     );
   }
 
   Widget buildMenuItem(String iconPath, String title, [String? subtitle]) {
     return ListTile(
-      leading: Image.asset(iconPath, width: 24, height: 24),
+      leading: Image.asset(iconPath, width: 32, height: 32), // Diperbesar
       title: Text(title),
-      subtitle: subtitle != null ? Text(subtitle, style: TextStyle(color: Colors.grey[600])) : null,
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+      subtitle: subtitle != null
+          ? Text(subtitle, style: TextStyle(color: Colors.grey[600]))
+          : null,
+      trailing:
+          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
       onTap: () {},
     );
   }
 
-  Widget buildMenuItemWithBadge(String iconPath, String title, String badgeText) {
+  Widget buildMenuItemWithBadge(
+      String iconPath, String title, String badgeText) {
     return ListTile(
-      leading: Image.asset(iconPath, width: 24, height: 24),
+      leading: Image.asset(iconPath, width: 32, height: 32), // Diperbesar
       title: Row(
         children: [
           Text(title),
           const SizedBox(width: 8),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-            decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(
+                color: Colors.green, borderRadius: BorderRadius.circular(12)),
             child: Text(
               badgeText,
               style: const TextStyle(color: Colors.white, fontSize: 12),
@@ -143,7 +187,8 @@ class ProfileScreen extends StatelessWidget {
           ),
         ],
       ),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+      trailing:
+          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
       onTap: () {},
     );
   }

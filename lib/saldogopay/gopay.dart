@@ -22,10 +22,14 @@ class GopayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("GoPay"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text("Riwayat transaksi",
+            style: TextStyle(color: Colors.black)),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {},
         ),
       ),
@@ -33,7 +37,7 @@ class GopayScreen extends StatelessWidget {
         children: [
           // Filter Buttons
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -43,6 +47,8 @@ class GopayScreen extends StatelessWidget {
               ],
             ),
           ),
+          // Banner
+          const GopayBanner(), // Ini bagian banner
           // Transaction List
           Expanded(
             child: ListView(
@@ -57,7 +63,7 @@ class GopayScreen extends StatelessWidget {
                 ),
                 _buildDateHeader("Kamis, 24 Okt 2024"),
                 _buildTransactionItem(
-                  icon: Icons.shopping_bag,
+                  icon: Icons.wifi,
                   title: "AXISNET",
                   subtitle: "",
                   amount: "-Rp3.350",
@@ -72,7 +78,7 @@ class GopayScreen extends StatelessWidget {
                   isIncome: false,
                 ),
                 _buildTransactionItem(
-                  icon: Icons.add_circle,
+                  icon: Icons.add_circle_outline,
                   title: "GoPay Top Up",
                   subtitle: "",
                   amount: "Rp25.000",
@@ -80,7 +86,7 @@ class GopayScreen extends StatelessWidget {
                 ),
                 _buildDateHeader("Senin, 02 Sep 2024"),
                 _buildTransactionItem(
-                  icon: Icons.receipt,
+                  icon: Icons.receipt_long,
                   title: "GoBills - PLN Token",
                   subtitle: "50202241506",
                   amount: "-Rp20.400",
@@ -95,17 +101,28 @@ class GopayScreen extends StatelessWidget {
   }
 
   Widget _buildFilterButton(String text) {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-          side: const BorderSide(color: Colors.grey),
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      height: 36,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.grey.shade300),
       ),
-      child: Text(text),
+      child: Row(
+        children: [
+          Text(
+            text,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(width: 4),
+          const Icon(Icons.arrow_drop_down, size: 18, color: Colors.black54),
+        ],
+      ),
     );
   }
 
@@ -131,11 +148,16 @@ class GopayScreen extends StatelessWidget {
   }) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Colors.blue.shade100,
+        backgroundColor: Colors.blue.shade50,
         child: Icon(icon, color: Colors.blue),
       ),
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: Text(subtitle, overflow: TextOverflow.ellipsis),
+      title: Text(title,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+      subtitle: subtitle.isNotEmpty
+          ? Text(subtitle,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 12))
+          : null,
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -147,7 +169,84 @@ class GopayScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Text("GoPay Saldo", style: TextStyle(fontSize: 12, color: Colors.grey)),
+          const Text("GoPay Saldo",
+              style: TextStyle(fontSize: 12, color: Colors.grey)),
+        ],
+      ),
+    );
+  }
+}
+
+class GopayBanner extends StatelessWidget {
+  const GopayBanner({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Gambar karakter (di luar box)
+          Image.asset(
+            'assets/gopay.1.png', // ganti dengan path sesuai kamu
+            height: 64,
+          ),
+          const SizedBox(width: 8),
+          // Kotak biru panjang ke kanan
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFF007EA7),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              child: Row(
+                children: [
+                  // Teks
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Tinggalin kebiasaan boncos",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "Dapetin laporan pengeluaran lebih lengkap di app GoPay.",
+                          style: TextStyle(
+                            color: Color(0xFFD0F3FF),
+                            fontSize: 12,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  // Tombol panah
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    padding: const EdgeInsets.all(6),
+                    child: const Icon(
+                      Icons.arrow_forward,
+                      size: 18,
+                      color: Color(0xFF007EA7),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
